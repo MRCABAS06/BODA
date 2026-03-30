@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Gala - Byron & Dayana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #C5A059; --cream: #FAF9F6; }
+        .font-wedding { font-family: 'Great Vibes', cursive; }
+        .font-title { font-family: 'Cinzel', serif; letter-spacing: 0.15em; }
+        .font-main { font-family: 'Montserrat', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('boda.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .golden-frame {
+            border: 4px double var(--gold);
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+        }
+
+        @keyframes heartFlurry {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        .heart {
+            position: fixed;
+            color: rgba(197, 160, 89, 0.5);
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: heartFlurry 8s linear infinite;
+            z-index: 5;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .btn-maps {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-maps:hover { background: var(--gold); color: white; }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-whatsapp:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-stone-900 overflow-x-hidden font-main">
+
+    <div id="heart-container"></div>
+
+    <section class="hero-bg relative flex flex-col items-center justify-center text-white text-center px-4">
+        <p id="saludo" class="font-wedding text-4xl mb-6 opacity-0 transition-opacity duration-1000 text-gold"></p>
+        <p class="font-title text-xl mb-4 tracking-[0.5em]">25.04.2026</p>
+        <div class="w-20 h-[1px] bg-white/50 mb-8"></div>
+        <h1 class="font-wedding text-8xl md:text-9xl text-gold mb-2">Byron</h1>
+        <div class="font-title text-4xl my-4">&</div>
+        <h1 class="font-wedding text-8xl md:text-9xl text-gold mb-12">Dayana</h1>
+        <p class="font-title italic text-lg tracking-widest text-white/90">“Hoy comienza nuestro para siempre.”</p>
+    </section>
+
+    <section class="py-24 flex justify-center reveal">
+        <div class="text-center p-10 border-y border-gold/30">
+            <h2 class="font-title text-2xl mb-8 tracking-widest">Faltan</h2>
+            <div id="countdown" class="flex gap-8">
+                <div><span id="days" class="text-4xl font-bold block text-gold">00</span><span class="text-[10px] uppercase">días</span></div>
+                <div><span id="hours" class="text-4xl font-bold block text-gold">00</span><span class="text-[10px] uppercase">hs</span></div>
+                <div><span id="minutes" class="text-4xl font-bold block text-gold">00</span><span class="text-[10px] uppercase">min</span></div>
+                <div><span id="seconds" class="text-4xl font-bold block text-gold">00</span><span class="text-[10px] uppercase">seg</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white reveal">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+            <div class="golden-frame text-center rounded-xl">
+                <h3 class="font-wedding text-5xl text-gold mb-4">Ceremonia</h3>
+                <p class="font-title text-sm mb-2">16:30 HRS</p>
+                <p class="text-sm mb-6">Iglesia El Buen Pastor<br>Santa Rosa, Tumbaco</p>
+                <a href="https://maps.app.goo.gl/UNLnxMY83RihTn9v6" target="_blank" class="btn-maps inline-block">Ver Mapa</a>
+            </div>
+
+            <div class="golden-frame text-center rounded-xl">
+                <h3 class="font-wedding text-5xl text-gold mb-4">Recepción</h3>
+                <p class="font-title text-sm mb-2">18:00 HRS</p>
+                <p class="text-sm mb-6">Casa del Padre del Novio<br>Barrio San José de Collaqui</p>
+                <a href="https://maps.app.goo.gl/Zs96CNHHqCLcr4sK8" target="_blank" class="btn-maps inline-block">Ver Mapa</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 text-center reveal">
+        <h2 class="font-title text-4xl text-gold mb-12">Regalos</h2>
+        <div class="max-w-md mx-auto bg-white p-8 rounded-2xl border border-gold/20 shadow-sm">
+            <p class="italic text-gray-500 mb-6 text-sm">Nuestra mayor alegría es tu presencia, pero si deseas darnos un detalle:</p>
+            <div class="p-4 bg-cream border-x-4 border-gold">
+                <p class="text-[10px] uppercase font-bold text-gold">Banco Pichincha (Ahorros)</p>
+                <p class="text-2xl font-bold tracking-tighter">6103387200</p>
+                <p class="text-xs mt-1 font-title">Byron & Dayana</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-stone-50 text-center reveal">
+        <h2 class="font-title text-3xl text-gold mb-12">Contactos & RSVP</h2>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <a href="https://wa.me/593984221437" class="btn-whatsapp">
+                <span>WhatsApp Byron</span>
+            </a>
+            <a href="https://wa.me/593984126017" class="btn-whatsapp">
+                <span>WhatsApp Dayana</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center hero-bg flex flex-col items-center justify-center text-white" style="height: 40vh; background-image: linear-gradient(rgba(197,160,89,0.5), rgba(0,0,0,0.8)), url('boda.jpeg');">
+        <h2 class="font-wedding text-6xl text-gold">¡Te esperamos!</h2>
+    </footer>
+
+    <div onclick="window.open('https://www.youtube.com/watch?v=IoHXCVmTptg')" class="fixed bottom-6 right-6 bg-white p-4 rounded-full shadow-lg border border-gold z-50 cursor-pointer animate-pulse">
+        <svg class="w-6 h-6 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombre = urlParams.get('n');
+        if (nombre) {
+            const saludoEl = document.getElementById("saludo");
+            saludoEl.innerHTML = "¡Hola " + nombre.replace(/\+/g, ' ') + "!";
+            saludoEl.classList.remove('opacity-0');
+        }
+
+        const heartContainer = document.getElementById('heart-container');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 6 + 's';
+            heartContainer.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+        setInterval(createHeart, 400);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+        const weddingDate = new Date("April 25, 2026 16:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const d = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((d % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
+</body>
+</html>
