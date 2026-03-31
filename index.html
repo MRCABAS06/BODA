@@ -7,136 +7,254 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #C5A059; --olive: #344e41; --cream: #FAF9F6; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #1a1a1a; margin: 0; overflow: hidden; }
+        :root { --gold: #C5A059; --olive: #7d8e7f; --cream: #FAF9F6; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #000; scroll-behavior: smooth; overflow: hidden; margin: 0; }
         .font-wedding { font-family: 'Great Vibes', cursive; }
-        .font-title { font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
+        .font-title { font-family: 'Cinzel', serif; letter-spacing: 0.2em; }
 
-        /* --- SOBRE MEJORADO CON TEXTURA --- */
+        /* --- SOBRE DE GALA (GEOMÉTRICO) --- */
         #envelope-wrapper {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #1a1a1a; z-index: 200; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle, #434343 0%, #000000 100%);
+            z-index: 200; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1s ease-out;
         }
+
         .envelope {
-            position: relative; width: 320px; height: 220px; background: var(--cream);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6); transition: 1s ease-in-out;
+            position: relative; 
+            width: 90%; max-width: 350px; 
+            height: 230px;
+            background-color: var(--cream);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+            transition: transform 1s ease;
         }
+
         .flap {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #f2f1e9; clip-path: polygon(0 0, 100% 0, 50% 50%);
-            transform-origin: top; z-index: 3; transition: 0.8s ease-in-out 0.3s;
+            background-color: #edebe1;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+            transform-origin: top;
+            transition: transform 0.8s ease-in-out 0.3s;
+            z-index: 3;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
+
         .pocket {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--cream); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%); z-index: 2;
+            background-color: var(--cream);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
+            z-index: 2;
         }
+
         .wax-seal {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 70px; height: 70px; background: radial-gradient(#d4af37, #b39149);
-            border-radius: 50%; border: 2px solid #967a3d; z-index: 10; cursor: pointer;
+            position: absolute; 
+            top: 50%; left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 75px; height: 75px;
+            background: radial-gradient(#d4af37, #C5A059);
+            border-radius: 50%; border: 3px solid #b39149;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.5s;
+            cursor: pointer; z-index: 10;
+            transition: all 0.5s ease;
         }
-        .wax-seal span { color: white; font-family: 'Cinzel'; font-size: 14px; font-weight: bold; line-height: 1; }
+        
+        .wax-seal span { 
+            font-family: 'Great Vibes', cursive; 
+            color: white; 
+            font-size: 28px; 
+            line-height: 0.8; 
+            margin-top: -2px;
+        }
 
-        /* --- ANIMACIÓN APERTURA --- */
         .envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
-        .envelope.open .wax-seal { opacity: 0; transform: translate(-50%, -150%) scale(0); }
-        #main-content { transform: translateY(100vh); transition: 1.2s ease-out 0.8s; background: var(--cream); }
+        .envelope.open .wax-seal { opacity: 0; transform: translate(-50%, -150%) scale(0); pointer-events: none; }
+        
+        #main-content {
+            transform: translateY(100vh);
+            transition: transform 1.2s ease-out 0.8s;
+            background-color: #fcfbf7;
+            min-height: 100vh;
+        }
         body.invitation-open #main-content { transform: translateY(0); }
-        body.invitation-open { overflow-y: auto; background: var(--cream); }
-        body.invitation-open #envelope-wrapper { opacity: 0; pointer-events: none; transition: 1s; }
+        body.invitation-open { overflow-y: auto; background-color: #fcfbf7; }
+        body.invitation-open #envelope-wrapper { opacity: 0; pointer-events: none; }
 
-        /* --- DISEÑO INVITACIÓN --- */
-        .hero-img { width: 100%; height: 60vh; background: url('BODA.jpeg') center/cover; }
-        .caminito { border-left: 2px dashed var(--gold); height: 60px; margin-left: 20px; position: relative; }
-        .caminito::after { content: '📍'; position: absolute; bottom: -10px; left: -10px; font-size: 12px; }
+        /* --- ESTILOS INVITACIÓN --- */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('BODA.jpeg');
+            background-size: cover; background-position: center; height: 100vh;
+        }
+        .petal { position: fixed; color: #fff; pointer-events: none; z-index: 10; animation: fall linear infinite; opacity: 0.6; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
         
-        .btn-gold { background: var(--gold); color: white; padding: 12px 24px; border-radius: 30px; font-size: 12px; font-family: 'Cinzel'; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 10px; }
-        .btn-olive { background: var(--olive); color: white; padding: 12px 24px; border-radius: 30px; font-size: 12px; font-family: 'Cinzel'; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-app {
+            background: var(--olive); color: white; border-radius: 0 15px 15px 0;
+            display: inline-flex; align-items: center; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-decoration: none;
+        }
+        .icon-box { background: #5a6b5c; padding: 12px; border-radius: 15px 0 0 15px; }
         
-        @keyframes bounce-up { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .arrow-down { animation: bounce-up 2s infinite; color: var(--gold); }
+        .nav-app {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            border-radius: 50px; padding: 12px 30px; display: flex; gap: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 100; border: 1px solid var(--gold);
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-
-    <audio id="music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
 
     <div id="envelope-wrapper">
         <div class="envelope" id="envelope">
             <div class="flap"></div>
             <div class="pocket"></div>
-            <div class="wax-seal" onclick="abrir()">
-                <span>B &</span><span>D</span>
+            <div class="wax-seal" onclick="openEnvelope()">
+                <span>B</span>
+                <span>&</span>
+                <span>D</span>
             </div>
         </div>
-        <p class="mt-12 text-white font-title text-[10px] tracking-[0.3em] animate-pulse">Toca el sello para abrir</p>
+        <p class="mt-16 text-cream font-title text-[10px] animate-pulse tracking-[0.3em] uppercase text-center max-w-xs mx-auto px-4">
+            Nuestro gran día comienza aquí
+        </p>
     </div>
 
     <div id="main-content">
-        <section class="hero-img relative flex items-end justify-center pb-10">
-            <div class="bg-black/40 p-6 text-center w-full">
-                <h1 class="font-wedding text-6xl text-white">Byron & Dayana</h1>
-                <p class="text-white font-title text-xs mt-2 tracking-widest">Sábado 25 de Abril de 2026</p>
-                <div class="arrow-down mt-6 flex flex-col items-center">
-                    <span class="text-[10px] uppercase tracking-widest mb-2">Desliza para ver más</span>
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-            </div>
-        </section>
+        <div id="petals-container"></div>
 
-        <section class="py-16 px-8 bg-white">
-            <div class="flex items-start gap-4 mb-8">
-                <div class="text-3xl">⛪</div>
-                <div>
-                    <h3 class="font-title text-gold font-bold">Ceremonia</h3>
-                    <p class="text-sm font-bold">16:00 HRS</p>
-                    <p class="text-xs text-gray-500">Iglesia El Buen Pastor, Santa Rosa de Tumbaco</p>
-                </div>
-            </div>
+        <nav class="nav-app">
+            <a href="#inicio"><svg class="w-6 h-6 text-stone-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg></a>
+            <a href="#eventos"><svg class="w-6 h-6 text-stone-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a>
+            <a href="#regalos"><svg class="w-6 h-6 text-stone-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1.115 1H9zM10 9a1 1 0 101.115-1H10v1z" clip-rule="evenodd"/><path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"/></svg></a>
+        </nav>
 
-            <div class="caminito mb-8"></div>
-
-            <div class="flex items-start gap-4 mb-12">
-                <div class="text-3xl">🥂</div>
-                <div>
-                    <h3 class="font-title text-gold font-bold">Recepción</h3>
-                    <p class="text-sm font-bold">18:00 HRS</p>
-                    <p class="text-xs text-gray-500">Casa del padre del novio (San José de Collaqui)</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 px-8 bg-[#f9f8f4] text-center border-t border-gold/20 pb-40">
-            <h2 class="font-wedding text-5xl text-gold mb-6">Regalos</h2>
-            <p class="text-xs text-gray-500 italic mb-10 max-w-xs mx-auto">"Tu presencia es nuestro mejor regalo, pero si deseas darnos un detalle:"</p>
+        <section id="inicio" class="hero-bg relative flex flex-col items-center justify-center text-white text-center px-4">
+            <p id="saludo" class="font-wedding text-4xl mb-6 text-gold opacity-0 transition-all duration-1000"></p>
+            <p class="font-title text-sm tracking-[0.5em] mb-4">25 . 04 . 2026</p>
+            <div class="w-16 h-[1px] bg-white/40 mb-8"></div>
+            <h1 class="font-wedding text-8xl md:text-9xl text-gold mb-2">Byron</h1>
+            <div class="font-title text-3xl my-2">&</div>
+            <h1 class="font-wedding text-8xl md:text-9xl text-gold mb-12">Dayana</h1>
+            <p class="font-title italic text-xs tracking-[0.2em] opacity-80 uppercase">Hoy comienza nuestro para siempre</p>
             
-            <div class="flex flex-col gap-6 items-center">
-                <div onclick="document.getElementById('cuenta').classList.toggle('hidden')" class="btn-olive cursor-pointer w-full max-w-xs justify-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                    <span>Número de cuenta</span>
-                </div>
-                <div id="cuenta" class="hidden p-4 bg-white border-dashed border border-gold rounded-xl w-full max-w-xs animate-fade-in">
-                    <p class="text-[10px] font-bold text-gray-400">Banco Pichincha (Ahorros)</p>
-                    <p class="text-xl font-bold">2205717608</p>
-                    <p class="text-xs font-title">Byron & Dayana</p>
-                </div>
+            <div class="absolute bottom-10 animate-bounce flex flex-col items-center">
+                <span class="text-[9px] uppercase tracking-widest mb-2 text-white">Desliza para continuar</span>
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+        </section>
 
-                <div onclick="window.open('https://maps.app.goo.gl/DhHfBFRZKSR2y6uR8')" class="btn-gold cursor-pointer w-full max-w-xs justify-center">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h2a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
-                    <span>Regalos en Recepción (Click)</span>
+        <section class="py-20 text-center bg-white reveal">
+            <h2 class="font-title text-xl mb-10 tracking-widest">Falta muy poco</h2>
+            <div id="countdown" class="flex justify-center gap-6 mb-12 text-stone-600">
+                <div class="text-center"><span id="days" class="text-4xl font-bold block text-gold">00</span><small class="uppercase text-[10px]">días</small></div>
+                <div class="text-center"><span id="hours" class="text-4xl font-bold block text-gold">00</span><small class="uppercase text-[10px]">hs</small></div>
+                <div class="text-center"><span id="minutes" class="text-4xl font-bold block text-gold">00</span><small class="uppercase text-[10px]">min</small></div>
+            </div>
+
+            <div class="max-w-xs mx-auto border-t border-b border-gray-100 py-10">
+                <div class="flex items-center justify-center gap-4 mb-6 text-stone-700">
+                    <span class="text-2xl">⛪</span>
+                    <div class="text-left">
+                        <p class="font-title text-xs text-gold font-bold uppercase">Misa - 16:00 PM</p>
+                        <p class="text-[11px] font-main">Iglesia El Buen Pastor, Tumbaco</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center gap-4 text-stone-700">
+                    <span class="text-2xl">🥂</span>
+                    <div class="text-left">
+                        <p class="font-title text-xs text-gold font-bold uppercase">Recepción - 18:00 PM</p>
+                        <p class="text-[11px] font-main">Casa del Padre del Novio</p>
+                    </div>
                 </div>
             </div>
+            
+            <div class="mt-12 flex flex-col gap-4 items-center px-6">
+                <a href="https://maps.app.goo.gl/UNLnxMY83RihTn9v6" target="_blank" class="btn-app w-64 text-decoration-none">
+                    <div class="icon-box">📍</div><span class="px-6 font-title text-[10px] tracking-widest">Ubicación Misa</span>
+                </a>
+                <a href="https://maps.app.goo.gl/Zs96CNHHqCLcr4sK8" target="_blank" class="btn-app w-64 text-decoration-none bg-stone-100 !text-stone-700">
+                    <div class="icon-box bg-stone-200">🏡</div><span class="px-6 font-title text-[10px] tracking-widest">Ubicación Casa</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="regalos" class="py-24 px-8 text-center bg-stone-50 reveal">
+            <h2 class="font-wedding text-6xl text-gold mb-6">Regalos</h2>
+            <p class="text-xs text-stone-500 mb-10 italic max-w-xs mx-auto">"Tu presencia es nuestro mejor regalo, pero si deseas darnos un detalle tenemos estas opciones:"</p>
+            
+            <div class="flex flex-col items-center gap-6">
+                <div onclick="document.getElementById('info-cuenta').classList.toggle('hidden')" class="btn-app cursor-pointer w-64">
+                    <div class="icon-box">💳</div><span class="px-6 font-title text-[10px] tracking-widest uppercase">Número de cuenta</span>
+                </div>
+                <div id="info-cuenta" class="hidden p-6 bg-white border border-dashed border-gold rounded-3xl animate-fade-in w-64 mx-auto">
+                    <p class="text-[10px] font-bold text-olive uppercase tracking-widest mb-1">Pichincha Ahorros</p>
+                    <p class="text-xl font-bold tracking-tighter text-stone-800">2205717608</p>
+                    <p class="text-[10px] mt-2 font-title uppercase text-stone-500">Byron & Dayana</p>
+                </div>
+
+                <div onclick="window.open('https://maps.app.goo.gl/DhHfBFRZKSR2y6uR8')" class="btn-app cursor-pointer w-64">
+                    <div class="icon-box">📦</div><span class="px-4 font-title text-[9px] tracking-widest uppercase">Regalos en Recepción</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-8 text-center bg-white reveal pb-40 border-t border-gray-50">
+            <h2 class="font-title text-xl text-gold mb-12 tracking-widest text-olive uppercase font-bold">Confirmaciones</h2>
+            <div class="flex flex-col gap-6 items-center">
+                <a href="https://wa.me/593984221437" target="_blank" class="btn-app w-72 bg-green-600 text-decoration-none">
+                    <div class="icon-box bg-green-700">📱</div><span class="px-6 font-title text-[10px] tracking-widest uppercase">WhatsApp Byron</span>
+                </a>
+                <a href="https://wa.me/593984126017" target="_blank" class="btn-app w-72 bg-green-600 text-decoration-none">
+                    <div class="icon-box bg-green-700">👩‍💼</div><span class="px-6 font-title text-[10px] tracking-widest uppercase text-left">Asistencia y Confirmaciones</span>
+                </a>
+            </div>
+            <p class="font-wedding text-5xl text-gold mt-24">¡Te esperamos!</p>
         </section>
     </div>
 
     <script>
-        function abrir() {
+        function openEnvelope() {
             document.getElementById('envelope').classList.add('open');
-            document.getElementById('music').play();
             document.body.classList.add('invitation-open');
         }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const n = urlParams.get('n');
+        if (n) {
+            const s = document.getElementById("saludo");
+            s.innerHTML = "¡Hola " + n.replace(/\+/g, ' ') + "!";
+            s.classList.remove('opacity-0');
+        }
+
+        const container = document.getElementById('petals-container');
+        function createPetal() {
+            const p = document.createElement('div');
+            p.classList.add('petal');
+            p.innerHTML = '🍃';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = Math.random() * 3 + 5 + 's';
+            p.style.fontSize = Math.random() * 10 + 10 + 'px';
+            container.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
+        }
+        setInterval(createPetal, 500);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+        const weddingDate = new Date("April 25, 2026 16:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const dist = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
     </script>
 </body>
 </html>
