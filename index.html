@@ -48,7 +48,6 @@
         body.invitation-open { overflow-y: auto; background-color: #fcfbf7; }
         body.invitation-open #envelope-wrapper { opacity: 0; pointer-events: none; }
 
-        /* --- CONTENIDO --- */
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('BODA.jpeg');
             background-size: cover; background-position: center; height: 100vh;
@@ -65,7 +64,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* Decoraciones de Esquina */
         .corner-decoration { position: absolute; width: 60px; height: 60px; border-color: var(--gold); opacity: 0.4; }
         .top-left { top: 20px; left: 20px; border-top: 2px solid; border-left: 2px solid; }
         .bottom-right { bottom: 20px; right: 20px; border-bottom: 2px solid; border-right: 2px solid; }
@@ -108,15 +106,13 @@
             <div class="max-w-xl mx-auto border-double border-4 border-gold/20 p-8 md:p-12 relative">
                 
                 <h2 class="font-wedding text-6xl text-gold mb-2">¡Nos casamos!</h2>
-                <p class="font-title text-[10px] tracking-[0.3em] text-stone-400 mb-8 uppercase">Y tenemos el honor de invitarte a celebrar nuestro matrimonio</p>
+                <p class="font-title text-[10px] tracking-[0.3em] text-stone-400 mb-8 uppercase text-balance">Y tenemos el honor de invitarte a celebrar nuestro matrimonio</p>
 
                 <div class="flex justify-center mb-8">
-                    <svg width="100" height="20" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 10H40M60 10H100M45 5L50 10L45 15M55 5L50 10L55 15" stroke="#C5A059" stroke-width="1"/>
-                    </svg>
+                    <svg width="100" height="20" viewBox="0 0 100 20" fill="none"><path d="M0 10H40M60 10H100M45 5L50 10L45 15M55 5L50 10L55 15" stroke="#C5A059" stroke-width="1"/></svg>
                 </div>
 
-                <p class="font-main text-stone-600 italic leading-relaxed mb-10 px-4 md:px-10">
+                <p class="font-main text-stone-600 italic leading-relaxed mb-10 px-4">
                     "Hay momentos en la vida que son especiales por sí solos, pero al compartirlos con quienes más queremos, se convierten en inolvidables."
                 </p>
                 
@@ -134,10 +130,17 @@
                     </div>
                 </div>
 
-                <div class="bg-stone-50 p-6 rounded-lg inline-block w-full max-w-sm border border-gold/10">
-                    <p class="font-bold text-gold text-[10px] mb-3 tracking-[0.4em] uppercase">Padrinos de Boda</p>
-                    <p class="text-stone-800 mb-1">Fernando Guaña</p>
-                    <p class="text-stone-800">Angelica Toapanta</p>
+                <div class="space-y-8 bg-stone-50 p-8 rounded-lg border border-gold/10 w-full max-w-sm mx-auto">
+                    <div>
+                        <p class="font-bold text-gold text-[10px] mb-2 tracking-[0.4em] uppercase">Padrino de Boda</p>
+                        <p class="text-stone-800 font-semibold">Miguel Somers</p>
+                    </div>
+                    <div class="w-12 h-[1px] bg-gold/30 mx-auto"></div>
+                    <div>
+                        <p class="font-bold text-gold text-[10px] mb-2 tracking-[0.4em] uppercase">Padrinos de Aros</p>
+                        <p class="text-stone-800 mb-1">Fernando Guaña</p>
+                        <p class="text-stone-800">Angelica Toapanta</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -180,17 +183,15 @@
         <section id="regalos" class="py-24 px-8 text-center bg-white reveal">
             <h2 class="font-wedding text-6xl text-gold mb-6">Regalos</h2>
             <p class="text-xs text-stone-500 mb-10 italic max-w-xs mx-auto">"Tu presencia es nuestro mejor regalo, pero si deseas darnos un detalle tenemos estas opciones:"</p>
-            
             <div class="flex flex-col items-center gap-6">
                 <div onclick="document.getElementById('info-cuenta').classList.toggle('hidden')" class="btn-app cursor-pointer w-64">
                     <div class="icon-box">💳</div><span class="px-6 font-title text-[10px] tracking-widest uppercase">Número de cuenta</span>
                 </div>
-                <div id="info-cuenta" class="hidden p-6 bg-stone-50 border border-dashed border-gold rounded-3xl animate-fade-in w-64 mx-auto">
+                <div id="info-cuenta" class="hidden p-6 bg-stone-50 border border-dashed border-gold rounded-3xl animate-fade-in w-64 mx-auto text-stone-800">
                     <p class="text-[10px] font-bold text-olive uppercase tracking-widest mb-1">Pichincha Ahorros</p>
                     <p class="text-xl font-bold tracking-tighter">2205717608</p>
                     <p class="text-[10px] mt-2 font-title uppercase text-stone-500">Byron & Dayana</p>
                 </div>
-
                 <div onclick="window.open('https://maps.app.goo.gl/DhHfBFRZKSR2y6uR8')" class="btn-app cursor-pointer w-64">
                     <div class="icon-box">📦</div><span class="px-4 font-title text-[9px] tracking-widest uppercase text-left">Regalos en Recepción</span>
                 </div>
