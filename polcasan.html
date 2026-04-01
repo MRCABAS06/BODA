@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¡Feliz Cumpleaños Hilary!</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Pantalla de inicio para activar el audio */
+        #pantalla-inicio {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #pantalla-inicio h1 {
+            color: #2f3542;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        #btn-abrir {
+            font-size: 4em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            animation: latido 1.5s infinite;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Contenedor principal de la tarjeta */
+        #tarjeta {
+            width: 90%;
+            max-width: 450px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            display: none; /* Oculto hasta que se toque el regalo */
+            flex-direction: column;
+        }
+
+        /* Estilos de las diapositivas */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: scale(0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .slide img {
+            max-width: 85%;
+            max-height: 50%;
+            object-fit: contain;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .slide h2 {
+            color: #ff4757;
+            margin: 0 20px 10px;
+            font-size: 1.8em;
+        }
+
+        .slide p {
+            color: #2f3542;
+            margin: 0 20px;
+            font-size: 1.2em;
+            line-height: 1.4;
+        }
+
+        .korean-text {
+            color: #2e86de;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Controles de navegación */
+        #controles {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        button.nav-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button.nav-btn:active {
+            transform: scale(0.95);
+            background: #ff6b81;
+        }
+
+        /* Indicadores de progreso (puntitos) */
+        #indicadores {
+            display: flex;
+            gap: 8px;
+        }
+
+        .punto {
+            width: 10px;
+            height: 10px;
+            background: #dfe4ea;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .punto.active {
+            background: #ff4757;
+        }
+
+        /* Confeti para la última slide */
+        .confeti {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://i.gifer.com/origin/c8/c8a245d654261da2d0e7f7b3017a1532_w200.gif');
+            background-size: cover;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica-fondo" loop>
+        <source src="Si Nos Dejan - Luis Miguel.mp4" type="audio/mp4">
+    </audio>
+
+    <div id="pantalla-inicio">
+        <h1>¡Hilary, tienes una sorpresa!</h1>
+        <button id="btn-abrir" onclick="iniciarSorpresa()">🎁</button>
+        <p style="color: #666; margin-top: 10px;">Toca el regalo para abrir</p>
+    </div>
+
+    <div id="tarjeta">
+        <div class="confeti" id="fondo-confeti"></div>
+
+        <div class="slide active">
+            <img src="POLCASAN 1.jpg" alt="Polcasan con corazón">
+            <h2>¡Hola Hilary!</h2>
+            <p>Vine trayendo todo este cariño para empezar a celebrar tus 20 añitos.</p>
+        </div>
+
+        <div class="slide">
+            <img src="POLCASAN 4.jpg" alt="Polcasan con girasoles">
+            <h2>Y flores hermosas</h2>
+            <p>También conseguí estos girasoles, ¡tan radiantes y brillantes como tú!</p>
+        </div>
+
+        <div class="slide">
+            <img src="POLCASAN 2.jpg" alt="Polcasan cartel 생일 축하합니다">
+            <h2>Un mensaje especial</h2>
+            <p>Quería decírtelo a lo grande...</p>
+            <span class="korean-text">생일 축하합니다!</span>
+        </div>
+
+        <div class="slide">
+            <img src="POLCASAN 3.jpg" alt="Polcasan cartel 힐러리 생일 축하합니다">
+            <h2>¡Felices 20, Hilary!</h2>
+            <span class="korean-text">힐러리 생일 축하합니다!</span>
+            <p style="margin-top: 15px; font-style: italic; font-size: 1.1em;">Que la vida te siga sonriendo y que esta canción te recuerde lo especial que eres.</p>
+            <p style="margin-top: 10px; font-weight: bold; color: #ff4757;">Con mucho cariño, Cabas</p>
+        </div>
+
+        <div id="controles">
+            <div id="indicadores">
+                <div class="punto active"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+            </div>
+            <button class="nav-btn" id="btn-siguiente" onclick="siguienteSlide()">Siguiente &rarr;</button>
+        </div>
+    </div>
+
+    <script>
+        let slideActual = 0;
+        const slides = document.querySelectorAll('.slide');
+        const puntos = document.querySelectorAll('.punto');
+        const btnSiguiente = document.getElementById('btn-siguiente');
+        const confeti = document.getElementById('fondo-confeti');
+        const musica = document.getElementById('musica-fondo');
+
+        function iniciarSorpresa() {
+            // Ocultar pantalla de inicio
+            document.getElementById('pantalla-inicio').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('pantalla-inicio').style.display = 'none';
+                // Mostrar la tarjeta
+                document.getElementById('tarjeta').style.display = 'flex';
+                // Reproducir la canción
+                musica.play().catch(e => console.log("El navegador bloqueó el audio", e));
+            }, 500);
+        }
+
+        function siguienteSlide() {
+            slides[slideActual].classList.remove('active');
+            puntos[slideActual].classList.remove('active');
+
+            slideActual++;
+
+            if (slideActual >= slides.length) {
+                slideActual = 0; 
+                confeti.style.display = 'none';
+                btnSiguiente.innerHTML = "Siguiente &rarr;";
+            }
+
+            slides[slideActual].classList.add('active');
+            puntos[slideActual].classList.add('active');
+
+            // Mostrar confeti y cambiar botón en la última slide
+            if (slideActual === slides.length - 1) {
+                confeti.style.display = 'block';
+                btnSiguiente.innerHTML = "Volver a ver ↺";
+            }
+        }
+    </script>
+</body>
+</html>
